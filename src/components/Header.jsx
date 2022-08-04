@@ -25,7 +25,6 @@ const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px;
 `;
 
 const HamburgerIconContainer = styled.div`
@@ -34,5 +33,5 @@ const HamburgerIconContainer = styled.div`
 `;
 
 const LogoImage = styled.img`
-  width: 5rem;
+  width: 138px;
 `;

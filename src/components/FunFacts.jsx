@@ -28,7 +28,7 @@ const CardContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 1rem;
+  margin: 12px 32px 0px 32px;
 `;
 
 const FunFactsCard = styled.div`
@@ -36,9 +36,9 @@ const FunFactsCard = styled.div`
   align-items: center;
   justify-content: center;
   border: 1px grey solid;
-  border-radius: 1rem;
-  padding: 1rem;
+  border-radius: 32px;
+  padding: 16px 28px;
   color: white;
-  background-color: green;
-  box-shadow: 2px 3px grey;
+  background-color: #398a2c;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
