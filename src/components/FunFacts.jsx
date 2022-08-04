@@ -20,11 +20,13 @@ export default FunFacts;
 FunFacts.propTypes = {
   funFactToggle: PropTypes.func,
   funFactMessage: PropTypes.string,
+  funFactRef: PropTypes.string,
 };
 
 FunFacts.defaultProps = {
   funFactToggle: null,
   funFactMessage: null,
+  funFactRef: null,
 };
 
 const CardContainer = styled.div`
