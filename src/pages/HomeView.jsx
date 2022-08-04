@@ -1,4 +1,11 @@
-import { Dialog, DialogContent, DialogContentText, Slide } from "@mui/material";
+import {
+  Dialog,
+  DialogContentText,
+  DialogTitle,
+  IconButton,
+  Slide,
+} from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import FunFacts from "../components/FunFacts";
@@ -57,13 +64,15 @@ const HomeView = () => {
     setFunFactObj(funFactsDB[Math.floor(Math.random() * funFactsDB.length)]);
   }, []);
 
-  console.log(funFactObj);
-  // this will be made dynamic later
-  const funFactMessage =
-    "Wasting food is worse than total emissions from flying (1.9%), plastic production (3.8%) and oil extraction (3.8%).";
+  const { funFactMessage, funFactRef, funFactModalMessage, funFactLink } =
+    funFactObj;
 
   const funFactToggle = () => {
     setFunFactDialogOpen(!funFactDialogOpen);
+  };
+
+  const onReadMore = () => {
+    window.open(funFactLink, "_blank", "noopener,noreferrer");
   };
   // make a use effect to load the randomizer function from utils and set the funfact to
   return (
@@ -75,7 +84,11 @@ const HomeView = () => {
       <WelcomeSubMessage>
         <h3>Some food for thought:</h3>
       </WelcomeSubMessage>
-      <FunFacts funFactToggle={funFactToggle} funFactMessage={funFactMessage} />
+      <FunFacts
+        funFactToggle={funFactToggle}
+        funFactMessage={funFactMessage}
+        funFactRef={funFactRef}
+      />
       <FunFactsSubText>
         <h5>Click on the fact to learn more</h5>
       </FunFactsSubText>
@@ -89,13 +102,22 @@ const HomeView = () => {
         keepMounted
         onClose={funFactToggle}
         aria-describedby="alert-dialog-slide-description"
+        PaperProps={{
+          style: { borderRadius: "40px", padding: "20px 24px" },
+        }}
       >
-        <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description">
-            {funFactMessage}
-          </DialogContentText>
-          <ReadMoreButton>Read More</ReadMoreButton>
-        </DialogContent>
+        <DialogTitle>
+          <IconButton
+            sx={{ position: "absolute", right: "32px", top: "12px" }}
+            onClick={funFactToggle}
+          >
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
+        <DialogContentText id="alert-dialog-slide-description">
+          {funFactModalMessage}
+        </DialogContentText>
+        <ReadMoreButton onClick={onReadMore}>Read More</ReadMoreButton>
       </Dialog>
     </>
   );
@@ -130,11 +152,9 @@ const ReadMoreButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px grey solid;
-  border-radius: 1rem;
-  padding: 0.5rem;
+  border-radius: 100px;
+  padding: 12px;
   color: white;
-  background-color: rgb(179, 123, 12);
-  box-shadow: 2px 3px grey;
-  margin: 1rem;
+  background-color: #533f2c;
+  margin: 24px 24px 4px 24px;
 `;

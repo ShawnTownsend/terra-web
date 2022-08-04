@@ -2,11 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-const FunFacts = ({ funFactToggle, funFactMessage }) => {
+const FunFacts = ({ funFactToggle, funFactMessage, funFactRef }) => {
   return (
     <>
       <CardContainer onClick={funFactToggle}>
-        <FunFactsCard>{funFactMessage}</FunFactsCard>
+        <FunFactsCard>
+          {funFactMessage}
+          <FunFactReference>{funFactRef}</FunFactReference>
+        </FunFactsCard>
       </CardContainer>
     </>
   );
@@ -33,6 +36,7 @@ const CardContainer = styled.div`
 
 const FunFactsCard = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   border: 1px grey solid;
@@ -41,4 +45,10 @@ const FunFactsCard = styled.div`
   color: white;
   background-color: #398a2c;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+`;
+const FunFactReference = styled.div`
+  font-size: 10px;
+  margin-top: 8px;
+  align-items: flex-start;
+  width: 100%;
 `;
