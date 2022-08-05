@@ -25,6 +25,7 @@ const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 `;
 
 const HamburgerIconContainer = styled.div`

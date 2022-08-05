@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import FunFacts from "../components/FunFacts";
 import FunFactsDialog from "../components/FunFactsDialog";
+import globe from "../assets/globe.svg";
+import CameraAltOutlinedIcon from "@mui/icons-material/CameraAltOutlined";
+import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
+import { Grid } from "@mui/material";
 
 const Home = () => {
   const [funFactDialogOpen, setFunFactDialogOpen] = useState(false);
@@ -47,6 +51,25 @@ const Home = () => {
         funFactModalMessage={funFactModalMessage}
         onReadMore={onReadMore}
       />
+      <Grid container>
+        <Grid item xs={6}>
+          <img src={globe} alt="globe" />
+        </Grid>
+        <Grid item xs={6}>
+          <h3>
+            Reveal Mr. Terra from the pile of food waste by taking a photo or
+            uploading a peculiar produce from your album
+          </h3>
+        </Grid>
+      </Grid>
+      <ButtonContainer>
+        <TerraButtonLeft>
+          <CameraAltOutlinedIcon fontSize="large" sx={{ color: "white" }} />
+        </TerraButtonLeft>
+        <TerraButtonRight>
+          <FileUploadOutlinedIcon fontSize="large" sx={{ color: "white" }} />
+        </TerraButtonRight>
+      </ButtonContainer>
     </>
   );
 };
@@ -69,9 +92,32 @@ const FunFactsSubText = styled.div`
 `;
 
 const WelcomeBodyHeader = styled.div`
-  margin: 0px 32px;
+  margin: 0px 32px 18px 32px;
 `;
 
+const ButtonContainer = styled.div`
+  margin: 28px 32px;
+  display: flex;
+  justify-content: center;
+`;
+
+const TerraButtonLeft = styled.button`
+  margin-right: 14px;
+  border: none;
+  width: 100%;
+  max-width: 156px;
+  background-color: #533f2c;
+  border-radius: 100px;
+  padding: 10px;
+`;
+const TerraButtonRight = styled.button`
+  border: none;
+  width: 100%;
+  max-width: 156px;
+  background-color: #533f2c;
+  border-radius: 100px;
+  padding: 10px;
+`;
 const funFactsDB = [
   {
     funFactMessage:
