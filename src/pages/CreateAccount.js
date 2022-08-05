@@ -1,3 +1,4 @@
+import styled from 'styled-components';
 import '../components/ca.css'
 
 // Hello
@@ -10,8 +11,8 @@ function CreateAccount() {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
         </div>
         <img src="https://i.imgur.com/VPoE98s.png" alt="Phone in hand" id="phoneHand" height="500px"/>
-        <h1 className="accountH1">Create Account</h1>
-        <h2 className="accountH2">Join your fellow Terrarians - it takes less than a minute!</h2>
+        <AccountH1>Create Account</AccountH1>
+        <AccountH2>Join your fellow Terrarians - it takes less than a minute!</AccountH2>
         <p className="inputLabelName">Email</p>
         <input type="email" placeholder="Email..." id="email" />
         <p className="inputLabelName">Password</p>
@@ -36,3 +37,12 @@ function CreateAccount() {
 }
 
 export default CreateAccount;
+
+
+const AccountH1 = styled.h1 `font-family: 'Epilogue';
+font-size: 100px;
+margin-left: 250px;` 
+
+const AccountH2 = styled.h2 `font-family: 'Montserrat';
+font-size: 50px;
+margin-left: 250px;`
