@@ -6,8 +6,10 @@ import globe from "../assets/globe.svg";
 import CameraAltOutlinedIcon from "@mui/icons-material/CameraAltOutlined";
 import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 import { Grid } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
   const [funFactDialogOpen, setFunFactDialogOpen] = useState(false);
   const [funFactObj, setFunFactObj] = useState({});
 
@@ -25,6 +27,7 @@ const Home = () => {
   const onReadMore = () => {
     window.open(funFactLink, "_blank", "noopener,noreferrer");
   };
+
   return (
     <>
       <WelcomeMessage>
@@ -63,7 +66,7 @@ const Home = () => {
         </Grid>
       </Grid>
       <ButtonContainer>
-        <TerraButtonLeft>
+        <TerraButtonLeft onClick={() => navigate("photostudio")}>
           <CameraAltOutlinedIcon fontSize="large" sx={{ color: "white" }} />
         </TerraButtonLeft>
         <TerraButtonRight>
@@ -125,7 +128,7 @@ const funFactsDB = [
     funFactRef: "* WWF",
     funFactModalMessage:
       "Food waste’s high emissions are largely due to food production using a huge amount of land, water and energy. An area the size of the Indian subcontinent (4.4m km2 ) and water volume equivalent to 304 million Olympic swimming pools are needed to produce food that never leaves the farm.",
-    funFactLink: "https://updates.panda.org/driven-to-waste-report",
+    funFactLink: "https://www.nrdc.org/food-waste",
   },
   {
     funFactMessage:
