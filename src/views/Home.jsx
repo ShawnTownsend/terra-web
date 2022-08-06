@@ -14,9 +14,12 @@ const Home = () => {
   const [funFactObj, setFunFactObj] = useState({});
 
   useEffect(() => {
-    setFunFactObj(funFactsDB[Math.floor(Math.random() * funFactsDB.length)]);
+    randomizeFact();
   }, []);
 
+  const randomizeFact = () => {
+    setFunFactObj(funFactsDB[Math.floor(Math.random() * funFactsDB.length)]);
+  };
   const { funFactMessage, funFactRef, funFactModalMessage, funFactLink } =
     funFactObj;
 
@@ -42,7 +45,7 @@ const Home = () => {
         funFactRef={funFactRef}
       />
       <FunFactsSubText>
-        <h5>Click on the fact to learn more</h5>
+        <h5 onClick={randomizeFact}>Click on the fact to learn more</h5>
       </FunFactsSubText>
       <WelcomeBodyHeader>
         <h1>See any peculiar produce today?</h1>
