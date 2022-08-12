@@ -72,14 +72,14 @@
   box-sizing: border-box;
   text-decoration:none;
   font-family:'Montserrat';
-  color:#FFFFFF;
-  background-color: #533F2C;
+  color:black;
+  background-color: #FFC635;
 ;
   text-align:center;
   transition: all 0.2s;
   }
   .button:hover{
-  background-color: #533F2C;
+  background-color: #FFC635;
   }
   @media all and (max-width:30em){
   .button{

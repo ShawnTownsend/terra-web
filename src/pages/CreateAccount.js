@@ -1,16 +1,13 @@
 import styled from 'styled-components';
 import '../components/ca.css'
 
-// Hello
-
-
 function CreateAccount() {
     return(
         <>
         <div>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
         </div>
-        <img src="https://i.imgur.com/VPoE98s.png" alt="Phone in hand" id="phoneHand" height="500px"/>
+        <img src="https://i.imgur.com/Gc8FnHC.png" alt="fruits" id="fruits" height="500px"/>
         <AccountH1>Create Account</AccountH1>
         <AccountH2>Join your fellow Terrarians - it takes less than a minute!</AccountH2>
         <p className="inputLabelName">Email</p>

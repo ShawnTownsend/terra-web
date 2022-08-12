@@ -2,21 +2,9 @@
 @import "@fontsource/montserrat";
 
 
-#phoneHand {
+#fruits {
     margin-left: 500px;
 }
-
-/* .accountH1 {
-    font-family: 'Epilogue';
-    font-size: 100px;
-    margin-left: 250px;
-}
-
-.accountH2 {
-    font-family: 'Montserrat';
-    font-size: 50px;
-    margin-left: 250px;
-} */
 
 #email {
     border: 3px solid #000;
@@ -70,14 +58,14 @@
     box-sizing: border-box;
     text-decoration:none;
     font-family:'Montserrat';
-    color:#FFFFFF;
-    background-color: #533F2C;
+    color:black;
+    background-color: #FFC635;
   ;
     text-align:center;
     transition: all 0.2s;
     }
     .button:hover{
-    background-color: #533F2C;
+    background-color: #FFC635;
     }
     @media all and (max-width:30em){
     .button{
