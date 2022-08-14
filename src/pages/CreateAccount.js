@@ -1,12 +1,13 @@
 import styled from 'styled-components';
+import Header2 from '../components/Header2';
 import '../components/ca.css'
 
 function CreateAccount() {
     return(
         <>
-        <div>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
-        </div>
+        <body className='signUp'>
+        <container className="container">
+        <Header2/>
         <img src="https://i.imgur.com/Gc8FnHC.png" alt="fruits" id="fruits" height="500px"/>
         <AccountH1>Create Account</AccountH1>
         <AccountH2>Join your fellow Terrarians - it takes less than a minute!</AccountH2>
@@ -28,7 +29,9 @@ function CreateAccount() {
         <button className="GF" id="GFF">
             Continue with Facebook
         </button>
-        <p id="pTag">Have an account?</p><a href="/signin" id="aTag">Sign In</a>
+        <h5 id="pTag">Have an account?</h5><a href="/signin" id="aTag">Sign In</a>
+        </container>
+        </body>
         </>
     )
 }
@@ -36,10 +39,19 @@ function CreateAccount() {
 export default CreateAccount;
 
 
-const AccountH1 = styled.h1 `font-family: 'Epilogue';
-font-size: 100px;
-margin-left: 250px;` 
+const AccountH1 = styled.h1 `
+width: 326px;
+height: 40px;
+font-family: 'Epilogue';
+font-style: normal;
+font-weight: 600;
+font-size: 28px;
+margin-left: 70px;` 
 
-const AccountH2 = styled.h2 `font-family: 'Montserrat';
-font-size: 50px;
-margin-left: 250px;`
+const AccountH2 = styled.h2 `width: 326px;
+height: 60px;
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+margin-left: 70px;`

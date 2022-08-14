@@ -46,7 +46,7 @@ const PhotoStudio = () => {
     <>
       <div>
         <TempCameraContainer ref={videoRef} />
-        <button onClick={takePhoto}>SNAP</button>
+        <button onClick={takePhoto}>◯</button>
       </div>
       <div>
         <TempPhotoContainer ref={photoRef} />
