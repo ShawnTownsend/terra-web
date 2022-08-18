@@ -1,8 +1,7 @@
 import Header2 from '../components/Header2'
 import { Title } from '../components/Title'
-// import { Link } from "react-router-dom"
 
-function FrontPage() {
+export function FrontPage() {
    return (
       <>
          <Header2 />
@@ -45,5 +44,3 @@ function FrontPage() {
       </>
    )
 }
-
-export default FrontPage

@@ -1,22 +1,14 @@
-import React from "react";
-import Header from "../components/Header";
-import { Outlet } from "react-router-dom";
-import styled from "styled-components";
+import React from 'react'
+import Header from '../components/Header'
+import { Outlet } from 'react-router-dom'
 
 const Main = () => {
-  return (
-    <>
-      <TemporaryMobileSizeContainer>
-        <Header />
-        <Outlet />
-      </TemporaryMobileSizeContainer>
-    </>
-  );
-};
+   return (
+      <>
+         <Header />
+         <Outlet />
+      </>
+   )
+}
 
-export default Main;
-
-const TemporaryMobileSizeContainer = styled.div`
-  max-width: 425px;
-  margin: 0 auto;
-`;
+export default Main

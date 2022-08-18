@@ -1,7 +1,7 @@
 import Header from '../components/Header'
 import { Title } from '../components/Title'
 
-function Donate() {
+export function Donate() {
    return (
       <>
          <Header />
@@ -40,5 +40,3 @@ function Donate() {
       </>
    )
 }
-
-export default Donate

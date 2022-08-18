@@ -1,10 +1,10 @@
 import { Route, Routes } from 'react-router-dom'
-import FrontPage from './pages/FrontPage'
-import CreateAccount from './pages/CreateAccount'
-import SignIn from './pages/SignInPage'
-import Donate from './pages/Donate'
+import { FrontPage } from './pages/FrontPage'
+import { SignUp } from './pages/SignUp'
+import { SignIn } from './pages/SignIn'
+import { Donate } from './pages/Donate'
 import Main from './pages/Main'
-import Home from './views/Home'
+import { Dashboard } from './views/Dashboard'
 import PhotoStudio from './views/PhotoStudio'
 import { Container } from './components/layout/Container'
 
@@ -14,12 +14,12 @@ function App() {
    return (
       <Container>
          <Routes>
-            <Route path="/signup" element={<CreateAccount />} />
+            <Route path="/signup" element={<SignUp />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/" element={<FrontPage />} />
             <Route path="/donate" element={<Donate />} />
             <Route path="" element={<Main />}>
-               <Route path="/main" element={<Home />} />
+               <Route path="/dashboard" element={<Dashboard />} />
                <Route path="/photostudio" element={<PhotoStudio />} />
             </Route>
          </Routes>
