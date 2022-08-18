@@ -1,56 +1,21 @@
-import React from "react";
-import styled from "styled-components";
-import PropTypes from "prop-types";
+import React from 'react'
 
 const FunFacts = ({ funFactToggle, funFactMessage, funFactRef }) => {
-  return (
-    <>
-      <CardContainer onClick={funFactToggle}>
-        <FunFactsCard>
-          {funFactMessage}
-          <FunFactReference>{funFactRef}</FunFactReference>
-        </FunFactsCard>
-      </CardContainer>
-    </>
-  );
-};
+   return (
+      <>
+         <div
+            className="flex items-center justify-center mt-3 mx-8"
+            onClick={funFactToggle}
+         >
+            <div className="flex flex-col items-center justify-center border-[1px] border-gray rounded-3xl text-white bg-tertiary drop-shadow-md p-3">
+               {funFactMessage}
+               <div className="text-xs mt-2 items-start w-full">
+                  {funFactRef}
+               </div>
+            </div>
+         </div>
+      </>
+   )
+}
 
-export default FunFacts;
-
-FunFacts.propTypes = {
-  funFactToggle: PropTypes.func,
-  funFactMessage: PropTypes.string,
-  funFactRef: PropTypes.string,
-};
-
-FunFacts.defaultProps = {
-  funFactToggle: null,
-  funFactMessage: null,
-  funFactRef: null,
-};
-
-const CardContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 12px 32px 0px 32px;
-`;
-
-const FunFactsCard = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 1px grey solid;
-  border-radius: 32px;
-  padding: 16px 28px;
-  color: white;
-  background-color: #398a2c;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-`;
-const FunFactReference = styled.div`
-  font-size: 10px;
-  margin-top: 8px;
-  align-items: flex-start;
-  width: 100%;
-`;
+export default FunFacts
