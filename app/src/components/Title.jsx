@@ -7,7 +7,6 @@ export const Title = ({ variant, children, className }) => {
 
    const titleVariants = ['h1', 'h2', 'h3']
    const safeTitle = variant ? variant.toLowerCase() : ''
-   console.log('safe', safeTitle)
    const Heading = titleVariants.includes(safeTitle) ? safeTitle : 'h1'
 
    return (

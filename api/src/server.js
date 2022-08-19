@@ -1,6 +1,9 @@
 import express from 'express'
+import session from 'express-session'
 import cors from 'cors'
 import dotenv from 'dotenv'
+import passport from 'passport'
+import { v4 as uuidv4 } from 'uuid'
 dotenv.config()
 // import { PrismaClient } from '@prisma/client'
 
@@ -17,6 +20,22 @@ app.use(
    cors({
       origin: process.env.APP_URL,
       credentials: true,
+   })
+)
+
+app.use(
+   session({
+      genid: req => uuidv4(),
+      name: 'terra',
+      secret: SECRET,
+      resave: false,
+      saveUninitialized: false,
+      cookie: {
+         httpOnly: true,
+         //  secure: true,
+         //  sameSite: true,
+         maxAge: 7 * 24 * 60 * 60 * 1000, // 1 week
+      },
    })
 )
 
@@ -49,6 +68,35 @@ app.get('/hello-there', async (req, res) => {
 //       await prisma.$disconnect()
 //       process.exit(1)
 //    })
+
+// configure passport
+app.use(passport.initialize())
+app.use(passport.session())
+
+// setup serialize/deserialize for users
+import {
+   passportSerialize,
+   passportDeserialize,
+} from './lib/passport/serialize.js'
+passportSerialize(passport)
+passportDeserialize(passport)
+
+// Google Auth
+import passportGoogle from './lib/passport/Google.js'
+passportGoogle(passport)
+
+app.get(
+   '/auth/google',
+   passport.authenticate('google', { scope: ['profile', 'email'] })
+)
+app.get(
+   '/auth/google/callback',
+   passport.authenticate('google', { failureRedirect: '/login' }),
+   function (req, res) {
+      // Successful authentication, redirect home.
+      res.redirect(`${process.env.APP_URL}/dashboard`)
+   }
+)
 
 // start the server
 app.listen(PORT, URL, () => {
