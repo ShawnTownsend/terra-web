@@ -20,7 +20,9 @@ export function SignIn() {
          <a href="http://localhost:3002/auth/google">
             <button>Continue with Google</button>
          </a>
-         <button>Continue with Facebook</button>
+         <a href="http://localhost:3002/auth/facebook">
+            <button>Continue with Facebook</button>
+         </a>
          <button>Join the Terrarians</button>
          <p>Don't have account?</p>
       </>

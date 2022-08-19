@@ -3,6 +3,7 @@ import { context } from '../db/context.js'
 const passportSerialize = passport => {
    passport.serializeUser((user, callback) => {
       if (user.provider === 'google') callback(null, user.emails[0].value)
+      if (user.provider === 'facebook') callback(null, user.emails[0].value)
    })
 }
 
