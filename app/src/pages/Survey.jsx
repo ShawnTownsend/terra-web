@@ -90,28 +90,234 @@ function Survey1({ register, getValues, setStep }) {
    )
 }
 
-function Survey2() {
+function Survey2({ register, getValues, setStep }) {
+   const [error, setError] = React.useState('')
+   const handleClick = () => {
+      if (
+         getValues('excessiveAmount') ||
+         getValues('moreThan') ||
+         getValues('reasonableAmount') ||
+         getValues('veryLittle') ||
+         getValues('none')
+      ) {
+         setError('You selected more than 1')
+         setStep(3)
+      }
+      setError('You did not select a option')
+   }
+    
    return (
       <>
-         <div className="">Survey 2</div>
+         <div className="">
+            <div className='font-montserrat'>
+            <p>How much food would you say that your household usually throws away each week?</p>
+            </div>
+            <div className="form-control">
+               <label className="border-[1px] border-black py-2 px-5 rounded-full mt-4">
+                  <span className="text-[1.125rem] font-semibold flex items-center justify-center">
+                  An excessive amount
+                  </span>
+                  <input
+                     type="checkbox"
+                     {...register('excessiveAmount')}
+                     className="sr-only"
+                  />
+               </label>
+            </div>
+            <div className="form-control mt-4">
+               <label className="border-[1px] border-black py-2 px-5 rounded-full">
+                  <span className="text-[1.125rem] font-semibold flex items-center justify-center">
+                  More than you should
+                  </span>
+                  <input
+                     type="checkbox"
+                     {...register('moreThan')}
+                     className="sr-only"
+                  />
+               </label>
+            </div>
+            <div className="form-control mt-4">
+               <label className="border-[1px] border-black py-2 px-5 rounded-full">
+                  <span className="text-[1.125rem] font-semibold flex items-center justify-center">
+                  A reasonable amount
+                  </span>
+                  <input
+                     type="checkbox"
+                     {...register('reasonableAmount')}
+                     className="sr-only"
+                  />
+               </label>
+            </div>
+            <div className="form-control mt-4">
+               <label className="border-[1px] border-black py-2 px-5 rounded-full">
+                  <span className="text-[1.125rem] font-semibold flex items-center justify-center">
+                  Very little
+                  </span>
+                  <input
+                     type="checkbox"
+                     {...register('veryLittle')}
+                     className="sr-only"
+                  />
+               </label>
+            </div>
+            <div className="form-control mt-4">
+               <label className="border-[1px] border-black py-2 px-5 rounded-full">
+                  <span className="text-[1.125rem] font-semibold flex items-center justify-center">
+                  None
+                  </span>
+                  <input
+                     type="checkbox"
+                     {...register('none')}
+                     className="sr-only"
+                  />
+               </label>
+            </div>
+            {error && (
+               <div>
+                  <p className="text-red">{error}</p>{' '}
+               </div>
+            )}
+            <button type="button" onClick={handleClick}>
+               Next
+            </button>
+         </div>
       </>
    )
 }
 
-function Survey3() {
-   return (
-      <>
-         <div className="">Survey 3</div>
-      </>
+function Survey3({ register, getValues, setStep }) {
+    const [error, setError] = React.useState('')
+    const handleClick = () => {
+        if (
+           getValues('answer')
+        ) {
+           setStep(4)
+        }
+        setError('You did not input anything')
+     }
+     
+    return (
+       <>
+          <div className="">
+            <div className='font-montserrat mt-2'>
+             <p>How would you personally rate yourself at managing food waste, 1 being poor and 10 being “I'm a master”? Use the slider to record your response.</p>
+             </div>
+             <div className="form-control">
+            <div className='mt-6'>
+             <input type="range" min="0" max="10" value="5" className="range" step="1" />
+             </div>
+                <div className="w-full flex justify-between text-xs px-2">
+                <span>1</span>
+                <span></span>
+                <span>5</span>
+                <span></span>
+                <span>10</span>
+                </div>
+                <div>
+                <p className='mt-12 font-montserrat'>
+                What food item do you find gets wasted most often in your household?
+                </p>
+                </div>
+                <div className='mt-2 font-montserrat'>
+                <p>
+                Input anything
+                </p>
+                </div>
+                <div className="form-control">
+                <input className="shadow appearance-none border-[1px] border-black rounded-full py-2 px-5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-2" {...register('answer')} type="text" placeholder="e.g. bread"/>
+                </div>
+             </div>
+             {error && (
+                <div>
+                   <p className="text-red">{error}</p>{' '}
+                </div>
+             )}
+             <button type="button" onClick={handleClick}>
+                Next
+             </button>
+          </div>
+       </>
    )
 }
 
-function Survey4() {
+function Survey4({ register, getValues, setStep }) {
+   const [error, setError] = React.useState('')
+   const handleClick = () => {
+      if (
+         getValues('ans1') ||
+         getValues('ans2') ||
+         getValues('ans3') ||
+         getValues('ans4') ||
+         getValues('ans5') ||
+         getValues('ans6')
+      ) {
+         setStep(5)
+      }
+      setError('You did not select a option')
+   }
    return (
-      <>
-         <div className="">Survey 4</div>
-      </>
+    <>
+    <div className="">
+       <Title variant="h1">Last Question!</Title>
+       <div className='font-montserrat mt-4'>
+        <p>
+        Select all that apply: Which of these actions are you currently doing at home?
+        </p>
+       </div>
+       <div className="form-control">
+        <label className="label cursor-pointer">
+            <input type="checkbox" className="checkbox checkbox-primary" {...register('ans1')}/>
+            <span className="label-text font-montserrat ml-3">Checking the fridge/freezer/pantry before shopping</span> 
+        </label>
+        <label className="label cursor-pointer">
+            <input type="checkbox" className="checkbox checkbox-primary" {...register('ans2')}/>
+            <span className="label-text font-montserrat ">Writing a meal plan</span> 
+        </label>
+        <label className="label cursor-pointer">
+            <input type="checkbox" className="checkbox checkbox-primary" {...register('ans3')}/>
+            <span className="label-text font-montserrat ml-3">Writing a shopping list</span> 
+        </label>
+        <label className="label cursor-pointer">
+            <input type="checkbox" className="checkbox checkbox-primary" {...register('ans4')}/>
+            <span className="label-text font-montserrat ml-3">Buying only what is needed</span> 
+        </label>
+        <label className="label cursor-pointer">
+            <input type="checkbox" className="checkbox checkbox-primary" {...register('ans5')}/>
+            <span className="label-text font-montserrat ml-3">Check use by and best before dates</span> 
+        </label>
+        <label className="label cursor-pointer">
+            <input type="checkbox" className="checkbox checkbox-primary" {...register('ans6')}/>
+            <span className="label-text font-montserrat ml-3">Consider portion size</span> 
+        </label>
+        </div>
+       {error && (
+          <div>
+             <p className="text-red">{error}</p>{' '}
+          </div>
+       )}
+       <button type="button" onClick={handleClick}>
+          Finish
+       </button>
+    </div>
+ </>
    )
+}
+
+function FinishedSurvey() {
+    return(
+        <>
+        <img src="https://i.imgur.com/lRDVqPC.png" alt="checkmark" width="164px" height="164px"/>
+        <Title variant="h1">Thanks for answering!</Title>
+        <div className='font-montserrat mt-6 mb-4'>
+        <p>
+        You'll have access to them in your account page if you want to see them again.
+        </p>
+       </div>
+       <button type="button">
+          Got it
+       </button>
+        </>
+    )
 }
 
 export function Survey() {
@@ -149,78 +355,26 @@ export function Survey() {
                   setStep={setStep}
                />
             )}
+            {step === 3 && (
+               <Survey3
+                  register={register}
+                  getValues={getValues}
+                  setStep={setStep}
+               />
+            )}
+            {step === 4 && (
+               <Survey4
+                  register={register}
+                  getValues={getValues}
+                  setStep={setStep}
+               />
+            )}
+            {step === 5 && (
+               <FinishedSurvey/>
+            )}
 
             <button type="submit">Save</button>
          </form>
       </>
    )
 }
-
-// <input type = checkbox>
-// const questionArray = [
-//     //[0]
-//     {
-//         question: `Which quality attracted you the most to “swipe right?”"`,
-//         answers: [
-//             "Friends oriented",
-//             "Pet lover",
-//             "Outdoorsy",
-//             "Humorous"
-//         ],
-//     },
-//     {
-//         question: "What is the most important to you in a partner?",
-//         answers: [
-//             "Family oriented",
-//             "Passionate about personal hobbies",
-//             "Loves to travel",
-//             "Open to trying new things"
-//         ],
-//     },
-//     {
-//         question: "Which best describes you?",
-//         answers: [
-//             "Music lover",
-//             "Netflix & Chill-er",
-//             "Foodie",
-//             "Planning the next hike"
-//         ],
-//     },
-// ];
-
-// <h2>
-//                     {questionArray[page - 1].question}
-//                 </h2>
-//                 <form className="questions">
-//                     {questionArray[page - 1].answers.map((answers, index) =>
-//                         <div key={index}>
-//                             <input
-//                                 id={index}
-//                                 type="checkbox"
-//                                 value={checkList[page - 1]}
-//                                 checked = {checkList[page - 1][index]}
-//                                 name ={answers}
-
-//                                 onChange={(event) => {
-//                                     handleCheck(event, index)
-//                                 }}
-//                             />
-//                             <label htmlFor={index}> {answers} </label>
-//                         </div>
-//                     )}
-//                     {page < 3 ? (
-//                     <button
-//                             type="button"
-//                             onClick={handleNext}
-//                             disabled={checked.length === 0}
-//                         >Next
-//                         </button>
-//                     ) : (
-//                         <button
-//                             type="button"
-//                             onClick={handleSubmit}
-//                             disabled={checked.length === 0}
-//                         >Submit
-//                         </button>
-//                     )}
-//                 </form>
