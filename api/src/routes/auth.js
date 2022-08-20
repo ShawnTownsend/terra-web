@@ -1,9 +1,14 @@
+import express from 'express'
+
+const router = express.Router()
+
 /**
  * @desc    Confirm user is logged in
- * @route   GET /auth/authcheck
+ * @route   GET /auth/status
  * @access  PUBLIC
  */
-const authCheck = (req, res) => {
+
+router.get('/status', (req, res) => {
    if (req.user) {
       res.status(200).json({
          user: {
@@ -22,16 +27,16 @@ const authCheck = (req, res) => {
          },
       })
    }
-}
+})
 
 /**
  * @desc    Log user out by destroying req.user object
  * @route   POST /auth/logout
  * @access  PUBLIC
  */
-const authLogout = (req, res) => {
+router.post('/logout', (req, res) => {
    req.logout()
    res.status(200).send('User logged out')
-}
+})
 
-export { authCheck, authLogout }
+export default router
