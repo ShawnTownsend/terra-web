@@ -1,80 +1,160 @@
-import { Title } from "../components/Title"
+import * as React from 'react'
+import { Title } from '../components/Title'
+import { useForm } from 'react-hook-form'
 
-function Survey1() {
-    return(
-        <>
-        <div className="w-full bg-indigo-500 h-12">
-            <Title variant="h1">
-                Hi, Roy!
-            </Title>
-            <Title variant='h2'>
-            Before we begin, we'd like to ask a few questions on food waste.
-            </Title>
-            <p>
-            How often do you go grocery shopping?
-            </p>
-            <button>
-                Once a day
-            </button>
-            <button>
-                Once a week
-            </button>
-            <button>
-                Once a month
-            </button>
-            <button>
-                Once a year
-            </button>
-            <button type='submit'>
-                Next
-            </button>
-        </div>
+function Survey1({ register, getValues, setStep }) {
+   const [error, setError] = React.useState('')
+   const handleClick = () => {
+      if (
+         getValues('onceADay') ||
+         getValues('onceAWeek') ||
+         getValues('onceAMonth') ||
+         getValues('onceAYear')
+      ) {
+         //TODO check that ONLY 1 is selected, not 2+
+         //TODO display error is 2+ selected
+         setError('You selected more than 1')
+         setStep(2)
+      }
 
-        </>
-    )
+      // TODO display an error message is none are selected
+      setError('You did not select a option')
+   }
+
+   return (
+      <>
+         <div className="">
+            <Title variant="h1">Hi, Roy!</Title>
+            <Title variant="h2">
+               Before we begin, we'd like to ask a few questions on food waste.
+            </Title>
+            <p>How often do you go grocery shopping?</p>
+            <div className="form-control">
+               <label className="border-[1px] border-black py-2 px-5 rounded-full">
+                  <span className="text-[1.125rem] font-semibold flex items-center justify-center">
+                     Once a day
+                  </span>
+                  <input
+                     type="checkbox"
+                     {...register('onceADay')}
+                     className="sr-only"
+                  />
+               </label>
+            </div>
+            <div className="form-control mt-4">
+               <label className="border-[1px] border-black py-2 px-5 rounded-full">
+                  <span className="text-[1.125rem] font-semibold flex items-center justify-center">
+                     Once a week
+                  </span>
+                  <input
+                     type="checkbox"
+                     {...register('onceAWeek')}
+                     className="sr-only"
+                  />
+               </label>
+            </div>
+            <div className="form-control mt-4">
+               <label className="border-[1px] border-black py-2 px-5 rounded-full">
+                  <span className="text-[1.125rem] font-semibold flex items-center justify-center">
+                     Once a month
+                  </span>
+                  <input
+                     type="checkbox"
+                     {...register('onceAMonth')}
+                     className="sr-only"
+                  />
+               </label>
+            </div>
+            <div className="form-control mt-4">
+               <label className="border-[1px] border-black py-2 px-5 rounded-full">
+                  <span className="text-[1.125rem] font-semibold flex items-center justify-center">
+                     Once a year
+                  </span>
+                  <input
+                     type="checkbox"
+                     {...register('onceAYear')}
+                     className="sr-only"
+                  />
+               </label>
+            </div>
+            {error && (
+               <div>
+                  <p className="text-red">{error}</p>{' '}
+               </div>
+            )}
+            <button type="button" onClick={handleClick}>
+               Next
+            </button>
+         </div>
+      </>
+   )
 }
 
 function Survey2() {
-    return(
-        <>
-        <div className="w-full bg-indigo-500 h-12">Survey 2</div>
-        </>
-    )
+   return (
+      <>
+         <div className="">Survey 2</div>
+      </>
+   )
 }
 
 function Survey3() {
-    return(
-        <>
-        <div className="w-full bg-indigo-500 h-12">Survey 3</div>
-        </>
-    )
+   return (
+      <>
+         <div className="">Survey 3</div>
+      </>
+   )
 }
 
 function Survey4() {
-    return(
-        <>
-        <div className="w-full bg-indigo-500 h-12">Survey 4</div>
-        </>
-    )
+   return (
+      <>
+         <div className="">Survey 4</div>
+      </>
+   )
 }
-
-
 
 export function Survey() {
-    return(
-        <>
-        <ul class="steps steps-vertical lg:steps-horizontal">
-        <li class="step step-primary"></li>
-        <li class="step"></li>
-        <li class="step"></li>
-        <li class="step"></li>
-        </ul>
-        <Survey1/>
-        </>
-    )
+   const [step, setStep] = React.useState(1)
+   const {
+      register,
+      handleSubmit,
+      watch,
+      getValues,
+      formState: { errors },
+   } = useForm()
+
+   const onSubmit = data => console.log(data)
+
+   return (
+      <>
+         <ul className="steps steps-horizontal">
+            <li className="step step-primary"></li>
+            <li className="step"></li>
+            <li className="step"></li>
+            <li className="step"></li>
+         </ul>
+         <form onSubmit={handleSubmit(onSubmit)}>
+            {step === 1 && (
+               <Survey1
+                  register={register}
+                  getValues={getValues}
+                  setStep={setStep}
+               />
+            )}
+            {step === 2 && (
+               <Survey2
+                  register={register}
+                  getValues={getValues}
+                  setStep={setStep}
+               />
+            )}
+
+            <button type="submit">Save</button>
+         </form>
+      </>
+   )
 }
-
-
 
 // <input type = checkbox>
 // const questionArray = [
@@ -119,8 +199,8 @@ export function Survey() {
 //                                 type="checkbox"
 //                                 value={checkList[page - 1]}
 //                                 checked = {checkList[page - 1][index]}
-//                                 name ={answers}  
-                                
+//                                 name ={answers}
+
 //                                 onChange={(event) => {
 //                                     handleCheck(event, index)
 //                                 }}
@@ -142,6 +222,5 @@ export function Survey() {
 //                             disabled={checked.length === 0}
 //                         >Submit
 //                         </button>
-//                     )} 
+//                     )}
 //                 </form>
-
