@@ -20,7 +20,13 @@
   },
   "homepage": "https://github.com/ShawnTownsend/terra-web#readme",
   "dependencies": {
+    "@prisma/client": "^4.2.1",
     "concurrently": "^7.3.0",
-    "prettier": "^2.7.1"
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "prettier": "^2.7.1",
+    "uuid": "^8.3.2"
   }
 }

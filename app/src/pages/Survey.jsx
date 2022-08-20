@@ -1,3 +1,81 @@
+import { Title } from "../components/Title"
+
+function Survey1() {
+    return(
+        <>
+        <div className="w-full bg-indigo-500 h-12">
+            <Title variant="h1">
+                Hi, Roy!
+            </Title>
+            <Title variant='h2'>
+            Before we begin, we'd like to ask a few questions on food waste.
+            </Title>
+            <p>
+            How often do you go grocery shopping?
+            </p>
+            <button>
+                Once a day
+            </button>
+            <button>
+                Once a week
+            </button>
+            <button>
+                Once a month
+            </button>
+            <button>
+                Once a year
+            </button>
+            <button type='submit'>
+                Next
+            </button>
+        </div>
+
+        </>
+    )
+}
+
+function Survey2() {
+    return(
+        <>
+        <div className="w-full bg-indigo-500 h-12">Survey 2</div>
+        </>
+    )
+}
+
+function Survey3() {
+    return(
+        <>
+        <div className="w-full bg-indigo-500 h-12">Survey 3</div>
+        </>
+    )
+}
+
+function Survey4() {
+    return(
+        <>
+        <div className="w-full bg-indigo-500 h-12">Survey 4</div>
+        </>
+    )
+}
+
+
+
+export function Survey() {
+    return(
+        <>
+        <ul class="steps steps-vertical lg:steps-horizontal">
+        <li class="step step-primary"></li>
+        <li class="step"></li>
+        <li class="step"></li>
+        <li class="step"></li>
+        </ul>
+        <Survey1/>
+        </>
+    )
+}
+
+
+
 // <input type = checkbox>
 // const questionArray = [
 //     //[0]
