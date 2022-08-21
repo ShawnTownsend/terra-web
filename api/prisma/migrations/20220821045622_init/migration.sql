@@ -1,24 +1,22 @@
 -- CreateTable
 CREATE TABLE "Account" (
-    "id" TEXT NOT NULL,
-    "userId" TEXT NOT NULL,
-    "type" TEXT NOT NULL,
-    "provider" TEXT NOT NULL,
-    "providerAccountId" TEXT NOT NULL,
+    "id" STRING NOT NULL,
+    "userId" STRING NOT NULL,
+    "provider" STRING NOT NULL,
+    "providerAccountId" STRING NOT NULL,
 
     CONSTRAINT "Account_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "User" (
-    "id" TEXT NOT NULL,
+    "id" STRING NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "provider" TEXT NOT NULL,
-    "providerId" TEXT NOT NULL,
-    "email" TEXT,
+    "email" STRING,
     "emailVerified" TIMESTAMP(3),
-    "image" TEXT,
+    "name" STRING NOT NULL,
+    "image" STRING,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
