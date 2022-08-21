@@ -1,13 +1,47 @@
-import { useNavigate } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
 import Header2 from '../components/Header2'
 import { Title } from '../components/Title'
 import { Link } from 'react-router-dom'
 import { Input } from '../components/input'
+import { useMutation } from '@tanstack/react-query'
+
+// const registerUser = async ( data) => {
+//    await
+// }
 
 export function SignIn() {
-   const handleSubmit = e => {
-      e.preventDefault()
-      console.log('form submitted')
+   const {
+      register,
+      handleSubmit,
+      watch,
+      formState: { errors },
+   } = useForm()
+
+   const registerMutation = useMutation(
+      data => {
+         console.log(data)
+         const body = {
+            username: data.username,
+            password: data.password,
+         }
+         return fetch('http://localhost:3002/auth/login', {
+            method: 'POST',
+            headers: {
+               'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+         })
+      },
+      {
+         onSuccess: res => {
+            console.log('success', res)
+         },
+      }
+   )
+
+   const onSubmit = data => {
+      console.log('submitting', data)
+      registerMutation.mutate(data)
    }
 
    return (
@@ -33,13 +67,20 @@ export function SignIn() {
                Sign In
             </Title>
          </div>
-         <form onSubmit={e => handleSubmit(e)}>
-            <Input type="email" id="email" label="Email" required={true} />
+         <form onSubmit={handleSubmit(onSubmit)}>
+            <Input
+               type="email"
+               id="username"
+               label="Email"
+               required={true}
+               register={register}
+            />
             <Input
                type="password"
                id="password"
                label="Password"
                required={true}
+               register={register}
             />
 
             <button>Sign In</button>

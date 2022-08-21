@@ -52,10 +52,19 @@ passportLocal(passport)
 
 router.post(
    '/login',
-   passport.authenticate('local', { failureRedirect: '/login' }),
-   function (req, res) {
-      res.redirect('/')
-   }
+
+   passport.authenticate(
+      'local',
+      {
+         successReturnToOrRedirect: '/success',
+         failureRedirect: '/loginfailed',
+         failureMessage: true,
+      }
+      // function (req, res) {
+      //    console.log('wtf?')
+      //    res.redirect('/')
+      // }
+   )
 )
 
 export default router

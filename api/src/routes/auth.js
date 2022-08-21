@@ -1,4 +1,8 @@
 import express from 'express'
+import { z } from 'zod'
+import bcrypt from 'bcrypt'
+import { v4 as uuidv4 } from 'uuid'
+import { context } from '../lib/db/context.js'
 
 const router = express.Router()
 
@@ -37,6 +41,45 @@ router.get('/status', (req, res) => {
 router.post('/logout', (req, res) => {
    req.logout()
    res.status(200).send('User logged out')
+})
+
+/**
+ * @desc    Register user
+ * @route   POST /auth/register
+ * @access  PUBLIC
+ */
+router.post('/register', async (req, res) => {
+   console.log('doing stuff?')
+   const Profile = z.object({
+      email: z.string().email(),
+      name: z.string(),
+      password: z.string(),
+   })
+
+   const parsedProfile = Profile.parse(req.body)
+   console.log('doing stuff 2?')
+   const saltRounds = 10
+   const hashedPassword = bcrypt.hashSync(parsedProfile.password, saltRounds)
+
+   console.log('doing stuff 3?')
+   const user = await context.prisma.user.create({
+      data: {
+         email: parsedProfile.email,
+         name: parsedProfile.name,
+         password: hashedPassword,
+         provider: 'local',
+      },
+   })
+
+   console.log('doing stuff?', user)
+   const verification = await context.prisma.verification.create({
+      data: {
+         code: uuidv4(),
+         userId: user.id,
+      },
+   })
+
+   console.log('doing stuff 5?', verification)
 })
 
 export default router
