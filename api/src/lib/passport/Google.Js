@@ -16,25 +16,19 @@ const passportGoogle = async passport => {
             // does the user exists?
             const user = await context.prisma.user.findUnique({
                where: {
-                  email: profile.emails[0].value,
+                  providerAccountId: profile.id,
                },
             })
 
             // if not, then add the user
 
             if (!user) {
-               const newUser = await context.prisma.user.create({
+               await context.prisma.user.create({
                   data: {
                      name: profile.displayName,
                      email: profile.emails[0].value,
                      emailVerified: new Date(),
                      image: profile.photos[0].value,
-                  },
-               })
-
-               await context.prisma.account.create({
-                  data: {
-                     userId: newUser.id,
                      provider: 'google',
                      providerAccountId: profile.id,
                   },
@@ -44,7 +38,7 @@ const passportGoogle = async passport => {
             // if the user exists, update?
             if (user && !user.googleId) {
                await context.prisma.user.update({
-                  where: { email: profile.emails[0].value },
+                  where: { providerAccountId: profile.id },
                   data: {
                      name: profile.displayName,
                      image: profile.photos[0].value,

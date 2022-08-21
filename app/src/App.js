@@ -1,4 +1,7 @@
+// import packages
 import { Route, Routes } from 'react-router-dom'
+
+// import routes
 import { FrontPage } from './pages/FrontPage'
 import { SignUp } from './pages/SignUp'
 import { SignIn } from './pages/SignIn'
