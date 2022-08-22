@@ -9,6 +9,8 @@ module.exports = {
             tertiary: '#533F2C',
             black: '#000000',
             gray: '#DEDEDE',
+            success: '#398A2C',
+            error: '#FF0000',
          },
          fontFamily: {
             epilogue: ['Epilogue', 'sans-serif'],

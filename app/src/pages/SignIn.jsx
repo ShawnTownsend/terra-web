@@ -1,47 +1,37 @@
+import * as React from 'react'
 import { useForm } from 'react-hook-form'
+import { Link, useNavigate } from 'react-router-dom'
+import { useMutation } from '@tanstack/react-query'
+import axios from 'axios'
 import Header2 from '../components/Header2'
 import { Title } from '../components/Title'
-import { Link } from 'react-router-dom'
 import { Input } from '../components/input'
-import { useMutation } from '@tanstack/react-query'
-
-// const registerUser = async ( data) => {
-//    await
-// }
 
 export function SignIn() {
+   const [error, setError] = React.useState({})
+   const navigate = useNavigate()
+
    const {
       register,
       handleSubmit,
-      watch,
       formState: { errors },
    } = useForm()
 
-   const registerMutation = useMutation(
-      data => {
-         console.log(data)
-         const body = {
-            username: data.username,
-            password: data.password,
-         }
-         return fetch('http://localhost:3002/auth/login', {
-            method: 'POST',
-            headers: {
-               'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
+   const loginMutation = useMutation(data => {
+      return axios
+         .post('http://localhost:3002/auth/login', data)
+         .then(res => {
+            console.log('res', res)
+            navigate('/dashboard')
          })
-      },
-      {
-         onSuccess: res => {
-            console.log('success', res)
-         },
-      }
-   )
+         .catch(err => {
+            setError(err.response.data.error)
+         })
+   })
 
-   const onSubmit = data => {
+   const onSubmit = async data => {
       console.log('submitting', data)
-      registerMutation.mutate(data)
+      loginMutation.mutate(data)
    }
 
    return (
@@ -74,6 +64,10 @@ export function SignIn() {
                label="Email"
                required={true}
                register={register}
+               customCSS={
+                  (error.name === 'UserNotFound' || errors.username) &&
+                  'border-error'
+               }
             />
             <Input
                type="password"
@@ -81,9 +75,18 @@ export function SignIn() {
                label="Password"
                required={true}
                register={register}
+               customCSS={
+                  (error.name === 'WrongPassword' || errors.password) &&
+                  'border-error'
+               }
             />
 
             <button>Sign In</button>
+            <div className="text-error w-full flex-col items-center">
+               {error && <p>{error.message}</p>}
+               {errors.username && <p>Please enter a valid email</p>}
+               {errors.password && <p>Please enter a password</p>}
+            </div>
          </form>
          <p>Forgot Password?</p>
          <p>or</p>

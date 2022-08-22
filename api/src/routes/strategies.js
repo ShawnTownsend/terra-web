@@ -50,21 +50,27 @@ router.get(
 import passportLocal from '../lib/passport/Local.js'
 passportLocal(passport)
 
-router.post(
-   '/login',
-
-   passport.authenticate(
+router.post('/login', (req, res, next) => {
+   return passport.authenticate(
       'local',
-      {
-         successReturnToOrRedirect: '/success',
-         failureRedirect: '/loginfailed',
-         failureMessage: true,
+      // {
+      //    successReturnToOrRedirect: '/success',
+      //    // failureMessage: true,
+      // },
+      (error, user, data) => {
+         // console.log('route', error, error.message, user, data)
+         console.log('user', req.user)
+         if (error) {
+            return res.status(400).json({ success: false, error: error })
+         }
+         return res
+            .status(200)
+            .json({ success: true, message: 'Successful login' })
       }
-      // function (req, res) {
-      //    console.log('wtf?')
-      //    res.redirect('/')
-      // }
-   )
-)
+   )(req, res, next)
+})
 
+router.post('/login2', (req, res, next) => {
+   return res.status(200).json({ success: false, message: 'testing' })
+})
 export default router

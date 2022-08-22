@@ -7,7 +7,7 @@ dotenv.config()
 
 const passportLocal = async passport => {
    passport.use(
-      new LocalStrategy(async function verify(username, password, done) {
+      new LocalStrategy(async function verify(username, password, cb) {
          const user = await context.prisma.user.findFirst({
             where: {
                email: username,
@@ -16,16 +16,22 @@ const passportLocal = async passport => {
          })
 
          // if no user was returned, error out
-         if (!user) return done('No user found')
+         if (!user)
+            return cb({
+               name: 'UserNotFound',
+               message: 'That email is not a valid user',
+            })
 
          console.log('user', user)
 
          // compare hashed+stored password to entered password
-         const saltRounds = 10
          if (!bcrypt.compareSync(password, user.password))
-            return done('passwords don not match')
+            return cb({
+               name: 'WrongPassword',
+               message: 'You entered the wrong password',
+            })
 
-         return done(null, user)
+         return cb(null, user)
       })
    )
 }
