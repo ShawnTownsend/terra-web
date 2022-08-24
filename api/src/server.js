@@ -98,6 +98,9 @@ app.get(
    }
 )
 
+import surverRoutes from './routes/survey.js'
+app.use('/survey', surverRoutes)
+
 // start the server
 app.listen(PORT, URL, () => {
    console.log(`EXPRESS: started on http://${URL}:${PORT}`)
