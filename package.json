@@ -21,6 +21,9 @@
   "homepage": "https://github.com/ShawnTownsend/terra-web#readme",
   "dependencies": {
     "@prisma/client": "^4.2.1",
+    "@tanstack/react-query": "^4.2.1",
+    "@tanstack/react-query-devtools": "^4.2.1",
+    "axios": "^0.27.2",
     "concurrently": "^7.3.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
