@@ -289,8 +289,8 @@ function Survey4({ register, getValues, setStep }) {
                <label className="label cursor-pointer justify-start mt-6">
                   <input
                      type="checkbox"
-                     className="checkbox checkbox-primary"
                      {...register('pg4-checkFridge')}
+                     className="checkbox checkbox-primary"
                   />
                   <span className="label-text font-montserrat ml-3">
                      Checking the fridge/freezer/pantry before shopping
@@ -299,8 +299,8 @@ function Survey4({ register, getValues, setStep }) {
                <label className="label cursor-pointer justify-start mt-5">
                   <input
                      type="checkbox"
-                     className="checkbox checkbox-primary"
                      {...register('pg4-mealPlan')}
+                     className="checkbox checkbox-primary"
                   />
                   <span className="label-text font-montserrat ml-3">
                      Writing a meal plan
@@ -309,8 +309,8 @@ function Survey4({ register, getValues, setStep }) {
                <label className="label cursor-pointer justify-start mt-5">
                   <input
                      type="checkbox"
-                     className="checkbox checkbox-primary"
                      {...register('pg4-shoppingList')}
+                     className="checkbox checkbox-primary"
                   />
                   <span className="label-text font-montserrat ml-3">
                      Writing a shopping list
@@ -319,8 +319,8 @@ function Survey4({ register, getValues, setStep }) {
                <label className="label cursor-pointer justify-start mt-5">
                   <input
                      type="checkbox"
-                     className="checkbox checkbox-primary"
                      {...register('pg4-buyOnlyNeeded')}
+                     className="checkbox checkbox-primary"
                   />
                   <span className="label-text font-montserrat ml-3">
                      Buying only what is needed
@@ -329,8 +329,8 @@ function Survey4({ register, getValues, setStep }) {
                <label className="label cursor-pointer justify-start mt-5">
                   <input
                      type="checkbox"
-                     className="checkbox checkbox-primary"
                      {...register('pg4-useByBeforeDate')}
+                     className="checkbox checkbox-primary"
                   />
                   <span className="label-text font-montserrat ml-3">
                      Check use by and best before dates
@@ -339,8 +339,8 @@ function Survey4({ register, getValues, setStep }) {
                <label className="label cursor-pointer justify-start mt-5">
                   <input
                      type="checkbox"
-                     className="checkbox checkbox-primary"
                      {...register('pg4-portionSize')}
+                     className="checkbox checkbox-primary"
                   />
                   <span className="label-text font-montserrat ml-3">
                      Consider portion size
